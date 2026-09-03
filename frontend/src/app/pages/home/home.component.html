@@ -1,0 +1,71 @@
+<div class="garage-container">
+  <!-- Header & Actions -->
+  <div class="garage-header">
+    <h1 class="garage-title">My Garage</h1>
+    <div class="header-actions">
+      <button (click)="selectView(VIEW_STATE.POST_LISTING)" class="btn-primary">
+        + Add New Car
+      </button>
+      <button (click)="logout()" class="btn-danger-outline">Logout</button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">Loading your listings...</div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && myListings.length === 0" class="empty-state">
+    <p class="empty-state-text">You don't have any cars listed yet.</p>
+    <button
+      (click)="selectView(VIEW_STATE.POST_LISTING)"
+      class="empty-state-link"
+    >
+      Create your first listing!
+    </button>
+  </div>
+
+  <!-- Car Listings Grid -->
+  <div *ngIf="!isLoading && myListings.length > 0" class="car-grid">
+    <div *ngFor="let car of paginatedGarageListings" class="car-card">
+      <!-- Card Header -->
+      <div class="card-header">
+        <h3 class="car-title">{{ car.brand }} {{ car.model }}</h3>
+        <span class="car-year-green">{{ car.year }}</span>
+      </div>
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-label">Fuel:</span>
+          <span class="info-value">{{ car.fuel }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Mileage:</span>
+          <span class="info-value">{{ car.km | number }} km</span>
+        </div>
+        <div class="price-row">
+          <span class="info-label">Price:</span>
+          <span class="price-value-blue">{{ car.price | number }} ₺</span>
+        </div>
+      </div>
+
+      <!-- Card Footer (Actions) -->
+      <div class="card-footer-right">
+        <button (click)="deleteListing(car.car_id)" class="btn-delete">
+          Delete Listing
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalItems]="myListings.length"
+    [itemsPerPage]="itemsPerPage"
+    (pageChange)="onPageChange($event)">
+  </app-pagination>
+
+</div>
+
+

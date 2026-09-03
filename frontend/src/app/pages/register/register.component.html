@@ -1,0 +1,46 @@
+<div class="auth-card-container">
+  <h2 class="auth-title">Create an Account!</h2>
+
+  <div *ngIf="errorMessage" class="error-banner">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-label">Username</label>
+      <input
+        type="text"
+        [(ngModel)]="username"
+        name="username"
+        class="form-input"
+        required
+      />
+    </div>
+
+    <div class="form-group-mb">
+      <label class="form-label">Password</label>
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        class="form-input"
+        required
+      />
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting" class="btn-submit-green">
+      {{ isSubmitting ? "Signing up..." : "Sign Up" }}
+    </button>
+
+    <p class="auth-footer-text">
+      Already have an account?
+      <button
+        type="button"
+        (click)="selectView(VIEW_STATE.LOGIN)"
+        class="auth-link-btn"
+      >
+        Log in here
+      </button>
+    </p>
+  </form>
+</div>

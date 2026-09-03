@@ -1,0 +1,25 @@
+<app-header
+  [isLoggedIn]="isLoggedIn"
+  (viewChange)="onViewChange($event)"
+></app-header>
+
+<main class="main-content">
+  <!-- using a more modern style rather than *ng style -->
+  @switch (currentView) {
+    @case (VIEW_STATE.HOME) {
+      <app-home (viewChange)="onViewChange($event)"></app-home>
+    }
+    @case (VIEW_STATE.LOGIN) {
+      <app-login (viewChange)="onViewChange($event)"></app-login>
+    }
+    @case (VIEW_STATE.REGISTER) {
+      <app-register (viewChange)="onViewChange($event)"></app-register>
+    }
+    @case (VIEW_STATE.POST_LISTING) {
+      <app-post-listing (viewChange)="onViewChange($event)"></app-post-listing>
+    }
+    @case (VIEW_STATE.ALL_CARS) {
+      <app-all-cars (viewChange)="onViewChange($event)"></app-all-cars>
+    }
+  }
+</main>

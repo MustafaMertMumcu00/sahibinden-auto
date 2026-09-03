@@ -1,0 +1,104 @@
+<div class="post-listing-container">
+  <h2 class="post-listing-title">Create a New Car Listing</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <!-- Brand Selection -->
+    <div class="form-group">
+      <label class="form-label">Brand</label>
+      <select
+        [(ngModel)]="brand_id"
+        name="brand"
+        (change)="onBrandSelect()"
+        class="form-select"
+        required
+      >
+        <option [ngValue]="null" disabled>Select a Brand</option>
+        <option *ngFor="let brand of brands" [value]="brand.brand_id">
+          {{ brand.brand_name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Model Selection (Disabled until Brand is selected) -->
+    <div class="form-group">
+      <label class="form-label">Model</label>
+      <select
+        [(ngModel)]="model_id"
+        name="model"
+        class="form-select"
+        [disabled]="!brand_id"
+        required
+      >
+        <option [ngValue]="null" disabled>Select a Model</option>
+        <option *ngFor="let model of models" [value]="model.model_id">
+          {{ model.model_name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Fuel Selection -->
+    <div class="form-group">
+      <label class="form-label">Fuel Type</label>
+      <select [(ngModel)]="fuel_id" name="fuel" class="form-select" required>
+        <option [ngValue]="null" disabled>Select a Fuel Type</option>
+        <option *ngFor="let fuel of fuels" [value]="fuel.fuel_id">
+          {{ fuel.fuel_name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Year & KM (Grid Layout) -->
+    <div class="form-grid-2">
+      <div>
+        <label class="form-label">Year</label>
+        <input
+          type="number"
+          [(ngModel)]="year"
+          name="year"
+          class="form-input"
+          placeholder="e.g., 2020"
+          required
+        />
+      </div>
+      <div>
+        <label class="form-label">Mileage (KM)</label>
+        <input
+          type="number"
+          [(ngModel)]="km"
+          name="km"
+          class="form-input"
+          placeholder="e.g., 50000"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="form-group-mb-large">
+      <label class="form-label">Price (₺)</label>
+      <input
+        type="number"
+        [(ngModel)]="price"
+        name="price"
+        class="form-input"
+        placeholder="e.g., 1500000"
+        required
+      />
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="form-actions">
+      <button
+        type="button"
+        (click)="selectView(VIEW_STATE.HOME)"
+        class="btn-cancel"
+      >
+        Cancel
+      </button>
+
+      <button type="submit" [disabled]="isSubmitting" class="btn-publish">
+        {{ isSubmitting ? "Publishing..." : "Publish Listing" }}
+      </button>
+    </div>
+  </form>
+</div>

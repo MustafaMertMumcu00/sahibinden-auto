@@ -1,0 +1,105 @@
+/* Container */
+.post-listing-container {
+  max-width: 42rem; /* max-w-2xl */
+  margin: 2.5rem auto 0;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+.post-listing-title {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937; /* text-gray-800 */
+}
+
+/* Form Groups & Inputs */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group-mb-large {
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+.form-label {
+  display: block;
+  color: #374151; /* text-gray-700 */
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-select,
+.form-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  background-color: white;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.form-select:disabled {
+  background-color: #f3f4f6; /* disabled:bg-gray-100 */
+  cursor: not-allowed;
+}
+
+.form-select:focus,
+.form-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px #bfdbfe; /* focus:ring-2 focus:ring-blue-300 */
+}
+
+/* Grid for Year & KM */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Actions */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-cancel {
+  background: none;
+  border: none;
+  color: #6b7280; /* text-gray-500 */
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.btn-cancel:hover {
+  color: #374151; /* hover:text-gray-700 */
+}
+
+.btn-publish {
+  background-color: #2563eb; /* bg-blue-600 */
+  color: white;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-publish:hover:not(:disabled) {
+  background-color: #1d4ed8; /* hover:bg-blue-700 */
+}
+
+.btn-publish:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

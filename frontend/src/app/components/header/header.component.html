@@ -1,0 +1,30 @@
+<header class="main-header">
+  <div class="header-container">
+    <div class="header-content">
+      <!-- Left Side: Logo & My Garage Button -->
+      <div class="left-section">
+        <button (click)="selectView(VIEW_STATE.ALL_CARS)" class="logo-btn">
+          SahibindenAuto
+        </button>
+
+        @if (isLoggedIn) {
+          <button (click)="selectView(VIEW_STATE.HOME)" class="garage-btn">
+            My Garage
+          </button>
+        }
+      </div>
+
+      <!-- Right Side: Auth Actions -->
+      <div class="right-section">
+        @if (!isLoggedIn) {
+          <button (click)="selectView(VIEW_STATE.LOGIN)" class="login-btn">
+            Log In
+          </button>
+          <button (click)="selectView(VIEW_STATE.REGISTER)" class="signup-btn">
+            Sign Up
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</header>

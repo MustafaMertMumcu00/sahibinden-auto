@@ -1,0 +1,97 @@
+<div class="marketplace-container">
+  <!-- Title -->
+  <div class="marketplace-header">
+    <h1 class="marketplace-title">Global Marketplace</h1>
+    <p class="marketplace-subtitle">Browse cars for sale from all users.</p>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">Loading marketplace...</div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && publicListings.length === 0" class="empty-state">
+    <p class="empty-state-text">There are currently no cars for sale.</p>
+  </div>
+
+  <!-- Car Listings Grid -->
+  <div *ngIf="!isLoading && publicListings.length > 0" class="car-grid">
+    <div
+      *ngFor="let car of paginatedListings"
+      class="car-card"
+      [id]="'car-' + car.car_id"
+      [class.highlight-pulse]="car.car_id === highlightedCarId"
+    >
+      <!-- Card Header -->
+      <div class="card-header">
+        <h3 class="car-title">{{ car.brand }} {{ car.model }}</h3>
+        <span class="car-year">{{ car.year }}</span>
+      </div>
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-label">Fuel:</span>
+          <span class="info-value">{{ car.fuel }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Mileage:</span>
+          <span class="info-value">{{ car.km | number }} km</span>
+        </div>
+
+        <div class="price-row">
+          <span class="info-label">Price:</span>
+          <div class="price-container">
+            <!-- Line 1: Old and new prices side by side -->
+            <div class="prices-inline">
+              <span *ngIf="car.old_price" class="old-price"
+                >{{ car.old_price | number }} ₺</span
+              >
+              <span class="price-value">{{ car.price | number }} ₺</span>
+            </div>
+            <!-- Line 2: Discount text below -->
+            <span *ngIf="car.old_price" class="discount-text-below">
+              {{ getDiscountPercentage(car.old_price, car.price) }}% OFF
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Footer (Seller Info) -->
+      <div class="card-footer">
+        Sold by: <span class="seller-name">{{ car.seller }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalItems]="publicListings.length"
+    [itemsPerPage]="itemsPerPage"
+    (pageChange)="onPageChange($event)">
+  </app-pagination>
+
+  <!-- Floating RabbitMQ Opportunity Banners -->
+  <div class="notification-container">
+    @for (opp of activeOpportunities; track opp.car_id) {
+      <div class="opportunity-banner"
+           [class.leaving]="opp.closing"
+           (click)="onNotificationClick(opp)">
+        <p class="opportunity-text">
+          🔥
+          <span class="banner-badge"
+            >%{{
+              getDiscountPercentage(opp.old_price, opp.new_price)
+            }}
+            OFF</span
+          >
+          {{ opp.seller }}'s {{ opp.brand }} {{ opp.model }} dropped to
+          {{ opp.new_price | number }} TL!
+        </p>
+        <button (click)="closeOpportunity(opp, $event)" class="btn-close-banner">
+          X
+        </button>
+      </div>
+    }
+  </div>
+</div>

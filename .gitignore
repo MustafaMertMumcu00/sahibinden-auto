@@ -1,0 +1,93 @@
+# =========================
+# Environment / Secrets
+# =========================
+.env
+*.env
+backend/.env
+
+# =========================
+# Python / Flask
+# =========================
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+
+__pycache__/
+*.py[cod]
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# Backend Logs
+# =========================
+backend/logs/
+logs/
+*.log
+
+# =========================
+# Angular / Node
+# =========================
+frontend/node_modules/
+node_modules/
+
+frontend/dist/
+dist/
+
+frontend/.angular/
+.angular/
+
+# Angular test coverage
+frontend/coverage/
+coverage/
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# Local databases
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.temp
+
+# Docker local overrides
+docker-compose.override.yml
+compose.override.yml
+
+# Node / Angular
+npm-debug.log
+yarn-error.log
+
+# Python
+*$py.class
+env/
+instance/
+
+# Secrets / certificates
+.env.*
+*.pem
+secret_config.py
+
+# Editor temp files
+*.swp
+
+# Docker local files
+.docker-local/
