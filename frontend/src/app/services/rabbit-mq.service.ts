@@ -5,8 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 const rxStompConfig: RxStompConfig = {
   brokerURL: `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws`,
   connectHeaders: {
-    login: 'guest',
-    passcode: 'guest',
+    login: 'car_mq_admin',
+    passcode: 'mert1234!?',
   },
   heartbeatIncoming: 0,
   heartbeatOutgoing: 20000,
