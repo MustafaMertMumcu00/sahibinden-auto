@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/auth';
+  private apiUrl = '/api/auth';
 
   // The critical configuration to ensure session cookies are sent/received
   private httpOptions = {

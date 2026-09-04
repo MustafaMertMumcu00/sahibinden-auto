@@ -15,7 +15,7 @@ export interface Listing {
   providedIn: 'root',
 })
 export class ListingService {
-  private apiUrl = 'http://localhost:5000/api/listings';
+  private apiUrl = '/api/listings';
   private httpOptions = { withCredentials: true };
 
   constructor(private http: HttpClient) {}

@@ -3,7 +3,7 @@ import { RxStomp, RxStompConfig } from '@stomp/rx-stomp';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 const rxStompConfig: RxStompConfig = {
-  brokerURL: 'ws://localhost:15674/ws',
+  brokerURL: `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws`,
   connectHeaders: {
     login: 'guest',
     passcode: 'guest',

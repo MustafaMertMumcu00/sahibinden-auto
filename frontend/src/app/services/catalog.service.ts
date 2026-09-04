@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CatalogService {
-  private apiUrl = 'http://localhost:5000/api/catalog';
+  private apiUrl = '/api/catalog';
   private httpOptions = { withCredentials: true };
 
   constructor(private http: HttpClient) {}
